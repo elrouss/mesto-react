@@ -6,7 +6,12 @@ export default function Profile() {
     <section className="profile">
       <ProfileAvatar />
       <ProfileInfo />
-      <button type="button" aria-label="Кнопка добавления фотокарточек в галерею" className="profile__add-button" />
+      <button type="button" aria-label="Добавление карточек в галерею" className="profile__add-button" onClick={handleAddPlaceClick}/>
     </section>
   );
+}
+
+function handleAddPlaceClick() {
+  const popup = document.querySelector('.popup_type_add-photocard');
+  popup.classList.add('popup_opened');
 }
