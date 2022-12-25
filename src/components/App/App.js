@@ -14,7 +14,7 @@ export default function App() {
       <Main />
       <Footer />
 
-      <PopupWithForm popup={{ selector: "edit-profile", formName: "profileInfoEditor", title: "Редактировать профиль", submitBtn: "Сохранить" }}>
+      <PopupWithForm popup={{ classSelector: "edit-profile", formName: "profileInfoEditor", title: "Редактировать профиль", submitBtn: "Сохранить" }}>
         <fieldset className="popup__form-fieldset">
           <input id="input-name" name="profileName" type="text" value="Имя" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
           <span className="popup__error input-name-error" />
@@ -23,14 +23,14 @@ export default function App() {
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ selector: "edit-avatar", formName: "profileAvatarEditor", title: "Обновить аватар", submitBtn: "Сохранить" }}>
+      <PopupWithForm popup={{ classSelector: "edit-avatar", formName: "profileAvatarEditor", title: "Обновить аватар", submitBtn: "Сохранить" }}>
         <fieldset className="popup__form-fieldset">
           <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" value="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
           <span className="popup__error avatar-url-error" />
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ selector: "add-photocard", formName: "photocardAdding", title: "Новое место", submitBtn: "Создать" }}>
+      <PopupWithForm popup={{ classSelector: "add-photocard", formName: "photocardAdding", title: "Новое место", submitBtn: "Создать" }}>
         <fieldset className="popup__form-fieldset">
           <input id="photocard-name" name="photocardName" type="text" placeholder="Название" value="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
           <span className="popup__error photocard-name-error" />
@@ -39,7 +39,7 @@ export default function App() {
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ selector: "confirmation-deletion", formName: "photocardConfirmationDeletion", title: "Вы уверены?", submitBtn: "Да" }} />
+      <PopupWithForm popup={{ classSelector: "confirmation-deletion", formName: "photocardConfirmationDeletion", title: "Вы уверены?", submitBtn: "Да" }} />
     </>
   );
 }
