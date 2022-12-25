@@ -7,7 +7,7 @@ export default function PopupWithForm({ popup, children }) {
           {children}
           <button type="submit" className="popup__submit-button">{popup.submitBtn}</button>
         </form>
-        <button type="button" aria-label="Закрытие модального окна" className="popup__closing-button" />
+        <button type="button" aria-label="Закрытие модального окна" className="popup__closing-button" onClick={popup.onClose} />
       </div>
     </div>
   );
