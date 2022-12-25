@@ -1,5 +1,5 @@
-import Profile from "../profile/Profile.js";
-import Gallery from "../gallery/Gallery.js";
+import Profile from "../Profile/Profile.js";
+import Gallery from "../Gallery/Gallery.js";
 
 export default function Main() {
   return (

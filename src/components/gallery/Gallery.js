@@ -1,4 +1,4 @@
-import Card from "../card/Card.js";
+import Card from "../Card/Card.js";
 
 export default function Gallery() {
   return (
