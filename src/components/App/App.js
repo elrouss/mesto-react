@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -25,9 +25,19 @@ export default function App() {
   }
 
   function closeAllPopups() {
-    if (isEditProfilePopupOpened) setEditProfilePopupOpen(false);
-    if (isAddPlacePopupOpened) setAddPlacePopupOpen(false);
-    if (isEditAvatarPopupOpened) setEditAvatarPopupOpen(false);
+    isEditProfilePopupOpened && setEditProfilePopupOpen(false);
+    isAddPlacePopupOpened && setAddPlacePopupOpen(false);
+    isEditAvatarPopupOpened && setEditAvatarPopupOpen(false);
+  }
+
+  const popupEditProfileRef = useRef();
+  const popupEditAvatarRef = useRef();
+  const popupAddPlaceRef = useRef();
+
+  function closePopupOnOutsideClick(evt) {
+    if (popupEditProfileRef.current === evt.target
+      || popupAddPlaceRef.current === evt.target
+      || popupEditAvatarRef.current === evt.target) closeAllPopups();
   }
 
   return (
@@ -36,7 +46,7 @@ export default function App() {
       <Main handlePopup={{ onEditProfile: openEditProfilePopup, onAddPlace: openAddPlacePopup, onEditAvatar: openEditAvatarPopup }} />
       <Footer />
 
-      <PopupWithForm popup={{ classSelector: "edit-profile", formName: "profileInfoEditor", title: "Редактировать профиль", submitBtn: "Сохранить", isOpened: isEditProfilePopupOpened, onClose: closeAllPopups }}>
+      <PopupWithForm popup={{ classSelector: "edit-profile", formName: "profileInfoEditor", title: "Редактировать профиль", submitBtn: "Сохранить", isOpened: isEditProfilePopupOpened, onClose: closeAllPopups, ref: popupEditProfileRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
         <fieldset className="popup__form-fieldset">
           <input id="input-name" name="profileName" type="text" value="Имя" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
           <span className="popup__error input-name-error" />
@@ -45,14 +55,14 @@ export default function App() {
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ classSelector: "edit-avatar", formName: "profileAvatarEditor", title: "Обновить аватар", submitBtn: "Сохранить", isOpened: isEditAvatarPopupOpened, onClose: closeAllPopups }}>
+      <PopupWithForm popup={{ classSelector: "edit-avatar", formName: "profileAvatarEditor", title: "Обновить аватар", submitBtn: "Сохранить", isOpened: isEditAvatarPopupOpened, onClose: closeAllPopups, ref: popupEditAvatarRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
         <fieldset className="popup__form-fieldset">
           <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" value="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
           <span className="popup__error avatar-url-error" />
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ classSelector: "add-photocard", formName: "photocardAdding", title: "Новое место", submitBtn: "Создать", isOpened: isAddPlacePopupOpened, onClose: closeAllPopups }}>
+      <PopupWithForm popup={{ classSelector: "add-photocard", formName: "photocardAdding", title: "Новое место", submitBtn: "Создать", isOpened: isAddPlacePopupOpened, onClose: closeAllPopups, ref: popupAddPlaceRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
         <fieldset className="popup__form-fieldset">
           <input id="photocard-name" name="photocardName" type="text" placeholder="Название" value="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
           <span className="popup__error photocard-name-error" />
