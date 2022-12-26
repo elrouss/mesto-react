@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -14,21 +14,21 @@ export default function App() {
 
   function openEditProfilePopup() {
     setEditProfilePopupOpen(true);
-  }
+  };
 
   function openAddPlacePopup() {
     setAddPlacePopupOpen(true);
-  }
+  };
 
   function openEditAvatarPopup() {
     setEditAvatarPopupOpen(true);
-  }
+  };
 
   function closeAllPopups() {
     isEditProfilePopupOpened && setEditProfilePopupOpen(false);
     isAddPlacePopupOpened && setAddPlacePopupOpen(false);
     isEditAvatarPopupOpened && setEditAvatarPopupOpen(false);
-  }
+  };
 
   const popupEditProfileRef = useRef();
   const popupEditAvatarRef = useRef();
@@ -38,7 +38,40 @@ export default function App() {
     if (popupEditProfileRef.current === evt.target
       || popupAddPlaceRef.current === evt.target
       || popupEditAvatarRef.current === evt.target) closeAllPopups();
-  }
+  };
+
+  const closePopupEditProfileOnKeyPressEsc = useCallback(
+    evt => {
+      if (evt.key === 'Escape' && isEditProfilePopupOpened) setEditProfilePopupOpen(false);
+    },
+    [isEditProfilePopupOpened, setEditProfilePopupOpen],
+  );
+
+  const closePopupAddPlaceOnKeyPressEsc = useCallback(
+    evt => {
+      if (evt.key === 'Escape' && isAddPlacePopupOpened) setAddPlacePopupOpen(false);
+    },
+    [isAddPlacePopupOpened, setAddPlacePopupOpen]
+  );
+
+  const closePopupEditAvatarOnKeyPressEsc = useCallback(
+    evt => {
+      if (evt.key === 'Escape' && isEditAvatarPopupOpened) setEditAvatarPopupOpen(false);
+    },
+    [isEditAvatarPopupOpened, setEditAvatarPopupOpen]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', closePopupEditProfileOnKeyPressEsc);
+    document.addEventListener('keydown', closePopupAddPlaceOnKeyPressEsc);
+    document.addEventListener('keydown', closePopupEditAvatarOnKeyPressEsc);
+
+    return () => {
+      document.removeEventListener('keydown', closePopupEditProfileOnKeyPressEsc);
+      document.removeEventListener('keydown', closePopupAddPlaceOnKeyPressEsc);
+      document.removeEventListener('keydown', closePopupEditAvatarOnKeyPressEsc);
+    };
+  });
 
   return (
     <>
