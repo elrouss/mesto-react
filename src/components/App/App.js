@@ -30,6 +30,7 @@ export default function App() {
     isEditAvatarPopupOpened && setEditAvatarPopupOpen(false);
   };
 
+
   const popupEditProfileRef = useRef();
   const popupEditAvatarRef = useRef();
   const popupAddPlaceRef = useRef();
