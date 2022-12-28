@@ -1,21 +1,35 @@
 import { useEffect, useState } from "react";
 import { api } from "../../utils/api.js";
+import Card from "../Card/Card.js";
 
 export default function Main({ handlePopup }) {
   const [userName, setUserName] = useState([]);
   const [userDescription, setUserDescription] = useState([]);
   const [userAvatar, setUserAvatar] = useState([]);
 
+  const [cards, renderCards] = useState([]);
+
   useEffect(() => {
-    api.getUserInfo()
-    .then((user) => {
-      setUserName(user.name);
-      setUserDescription(user.about);
-      setUserAvatar(user.avatar);
-    })
-    .catch((err) => {
-      console.log(`Ошибка в процессе загрузки данных пользователя: ${err}`);
-    })
+    let mounted = true;
+
+    Promise.all([api.getUserInfo(), api.getPhotocards()])
+      .then(([user, cards]) => {
+        if (mounted) {
+          setUserName(user.name);
+          setUserDescription(user.about);
+          setUserAvatar(user.avatar);
+
+          console.log(cards)
+          renderCards(cards);
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе загрузки данных пользователя и галереи: ${err}`);
+      })
+
+    return () => {
+      mounted = false;
+    }
   }, []);
 
   return (
@@ -31,7 +45,13 @@ export default function Main({ handlePopup }) {
         </div>
         <button type="button" aria-label="Добавление карточек в галерею" className="profile__add-button" onClick={handlePopup.onAddPlace} />
       </section>
-      <section className="gallery" aria-label="Галерея карточек"></section>
+      <section className="gallery" aria-label="Галерея карточек">
+        {
+          cards.map((card) => (
+            <Card key={card._id} card={{ data: card }} />
+          ))
+        }
+      </section>
     </main>
   );
 }
