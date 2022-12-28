@@ -19,7 +19,6 @@ export default function Main({ handlePopup }) {
           setUserDescription(user.about);
           setUserAvatar(user.avatar);
 
-          console.log(cards)
           renderCards(cards);
         }
       })
@@ -48,7 +47,7 @@ export default function Main({ handlePopup }) {
       <section className="gallery" aria-label="Галерея карточек">
         {
           cards.map((card) => (
-            <Card key={card._id} card={{ data: card }} />
+            <Card key={card._id} card={{ data: card }} handlePopup={handlePopup.onConfirmationCardDeletionPopup} />
           ))
         }
       </section>
