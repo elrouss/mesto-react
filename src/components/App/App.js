@@ -63,7 +63,7 @@ export default function App() {
     evt => {
       if (evt.key === 'Escape' && isEditProfilePopupOpened) setEditProfilePopupOpen(false);
     },
-    [isEditProfilePopupOpened, setEditProfilePopupOpen],
+    [isEditProfilePopupOpened, setEditProfilePopupOpen]
   );
 
   const closePopupAddPlaceOnKeyPressEsc = useCallback(
