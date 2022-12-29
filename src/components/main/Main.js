@@ -3,11 +3,11 @@ import { api } from "../../utils/api.js";
 import Card from "../Card/Card.js";
 
 export default function Main({ handlePopup }) {
-  const [userName, setUserName] = useState([]);
-  const [userDescription, setUserDescription] = useState([]);
-  const [userAvatar, setUserAvatar] = useState([]);
+  const [ userName, setUserName ] = useState([]);
+  const [ userDescription, setUserDescription ] = useState([]);
+  const [ userAvatar, setUserAvatar ] = useState([]);
 
-  const [cards, renderCards] = useState([]);
+  const [ cards, renderCards ] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -47,7 +47,7 @@ export default function Main({ handlePopup }) {
       <section className="gallery" aria-label="Галерея карточек">
         {
           cards.map((card) => (
-            <Card key={card._id} card={{ data: card }} handlePopup={handlePopup.onConfirmationCardDeletionPopup} />
+            <Card key={card._id} card={{ data: card }} handlePopup={handlePopup} />
           ))
         }
       </section>
