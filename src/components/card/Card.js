@@ -9,5 +9,5 @@ export default function Card({ card, handlePopup }) {
         <span className="gallery__item-likes-counter">{card.data.likes.length}</span>
       </div>
     </article>
-  )
+  );
 }

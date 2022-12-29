@@ -7,5 +7,5 @@ export default function ImagePopup({ popup }) {
         <button type="button" aria-label="Закрытие модального окна" className="popup__closing-button" onClick={popup.onClose} />
       </div>
     </div>
-  )
+  );
 }
