@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -8,12 +8,12 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 import ImagePopup from '../ImagePopup/ImagePopup.js';
 
 export default function App() {
-  const [ isEditProfilePopupOpened, setEditProfilePopupOpen ] = useState(false);
-  const [ isAddPlacePopupOpened, setAddPlacePopupOpen ] = useState(false);
-  const [ isEditAvatarPopupOpened, setEditAvatarPopupOpen ] = useState(false);
-  const [ isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened ] = useState(false);
+  const [isEditProfilePopupOpened, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpened, setAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpened, setEditAvatarPopupOpen] = useState(false);
+  const [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened] = useState(false);
 
-  const [ selectedCard, setSelectedCard ] = useState({});
+  const [selectedCard, setSelectedCard] = useState({});
 
   function openEditProfilePopup() {
     setEditProfilePopupOpen(true);
@@ -35,88 +35,59 @@ export default function App() {
     setSelectedCard(cardData);
   };
 
-  function closeAllPopups() {
+  const closeAllPopups = useCallback(() => {
     isEditProfilePopupOpened && setEditProfilePopupOpen(false);
     isAddPlacePopupOpened && setAddPlacePopupOpen(false);
     isEditAvatarPopupOpened && setEditAvatarPopupOpen(false);
     isConfirmationCardDeletionPopupOpened && setConfirmationCardDeletionPopupOpened(false);
 
     selectedCard && setSelectedCard({});
-  };
+  }, [isEditProfilePopupOpened, isAddPlacePopupOpened, isEditAvatarPopupOpened, isConfirmationCardDeletionPopupOpened, selectedCard]);
 
-  const popupEditProfileRef = useRef();
-  const popupEditAvatarRef = useRef();
-  const popupAddPlaceRef = useRef();
-  const popupConfirmationCardDeletionRef = useRef();
-  const popupImageRef = useRef();
-
-  function closePopupOnOutsideClick(evt) {
-    if (popupEditProfileRef.current === evt.target
-      || popupAddPlaceRef.current === evt.target
-      || popupEditAvatarRef.current === evt.target
-      || popupConfirmationCardDeletionRef.current === evt.target
-      || popupImageRef.current === evt.target)
+  const closePopupsOnOutsideClick = useCallback((evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__closing-button')) {
       closeAllPopups();
-  };
-
-  const closePopupEditProfileOnKeyPressEsc = useCallback(
-    evt => {
-      if (evt.key === 'Escape' && isEditProfilePopupOpened) setEditProfilePopupOpen(false);
-    },
-    [isEditProfilePopupOpened, setEditProfilePopupOpen]
-  );
-
-  const closePopupAddPlaceOnKeyPressEsc = useCallback(
-    evt => {
-      if (evt.key === 'Escape' && isAddPlacePopupOpened) setAddPlacePopupOpen(false);
-    },
-    [isAddPlacePopupOpened, setAddPlacePopupOpen]
-  );
-
-  const closePopupEditAvatarOnKeyPressEsc = useCallback(
-    evt => {
-      if (evt.key === 'Escape' && isEditAvatarPopupOpened) setEditAvatarPopupOpen(false);
-    },
-    [isEditAvatarPopupOpened, setEditAvatarPopupOpen]
-  );
-
-  const closePopupConfirmationCardDeletionOnKeyPressEsc = useCallback(
-    evt => {
-      if (evt.key === 'Escape' && isConfirmationCardDeletionPopupOpened) setConfirmationCardDeletionPopupOpened(false);
-    },
-    [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened]
-  );
-
-  const closePopupImageOnKeyPressEsc = useCallback(
-    evt => {
-      if (evt.key === 'Escape' && selectedCard) setSelectedCard({});
-    },
-    [selectedCard, setSelectedCard]
-  );
+    };
+  }, [closeAllPopups]);
 
   useEffect(() => {
-    document.addEventListener('keydown', closePopupEditProfileOnKeyPressEsc);
-    document.addEventListener('keydown', closePopupAddPlaceOnKeyPressEsc);
-    document.addEventListener('keydown', closePopupEditAvatarOnKeyPressEsc);
-    document.addEventListener('keydown', closePopupConfirmationCardDeletionOnKeyPressEsc);
-    document.addEventListener('keydown', closePopupImageOnKeyPressEsc);
+    const closePopupsOnKeyPressEsc = evt => {
+      if (evt.key === 'Escape' && (isEditProfilePopupOpened || isAddPlacePopupOpened || isEditAvatarPopupOpened || isConfirmationCardDeletionPopupOpened || selectedCard)) {
+        closeAllPopups();
+      };
+    };
+
+    document.addEventListener('keydown', closePopupsOnKeyPressEsc);
 
     return () => {
-      document.removeEventListener('keydown', closePopupEditProfileOnKeyPressEsc);
-      document.removeEventListener('keydown', closePopupAddPlaceOnKeyPressEsc);
-      document.removeEventListener('keydown', closePopupEditAvatarOnKeyPressEsc);
-      document.removeEventListener('keydown', closePopupConfirmationCardDeletionOnKeyPressEsc);
-      document.removeEventListener('keydown', closePopupImageOnKeyPressEsc);
+      document.removeEventListener('keydown', closePopupsOnKeyPressEsc);
     };
-  });
+  }, [isEditProfilePopupOpened, isAddPlacePopupOpened, isEditAvatarPopupOpened, isConfirmationCardDeletionPopupOpened, selectedCard, closeAllPopups]);
 
   return (
     <>
       <Header />
-      <Main handlePopup={{ onEditProfile: openEditProfilePopup, onAddPlace: openAddPlacePopup, onEditAvatar: openEditAvatarPopup, onConfirmationCardDeletionPopup: openConfirmationCardDeletionPopup, onCardClick: handleCardClick }} />
+      <Main
+        onEditProfile={openEditProfilePopup}
+        onAddPlace={openAddPlacePopup}
+        onEditAvatar={openEditAvatarPopup}
+        onConfirmationCardDeletion={openConfirmationCardDeletionPopup}
+        onCardClick={handleCardClick}
+      />
       <Footer />
 
-      <PopupWithForm popup={{ classSelector: "edit-profile", formName: "profileInfoEditor", title: "Редактировать профиль", submitBtn: "Сохранить", isOpened: isEditProfilePopupOpened, onClose: closeAllPopups, ref: popupEditProfileRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
+      <PopupWithForm
+        popupData={{
+          classSelector: "edit-profile",
+          formName: "profileInfoEditor",
+          title: "Редактировать профиль",
+          submitBtn: "Сохранить",
+        }}
+
+        isOpened={isEditProfilePopupOpened}
+        onClose={closeAllPopups}
+        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      >
         <fieldset className="popup__form-fieldset">
           <input id="input-name" name="profileName" type="text" defaultValue="" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
           <span className="popup__error input-name-error" />
@@ -125,14 +96,36 @@ export default function App() {
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ classSelector: "edit-avatar", formName: "profileAvatarEditor", title: "Обновить аватар", submitBtn: "Сохранить", isOpened: isEditAvatarPopupOpened, onClose: closeAllPopups, ref: popupEditAvatarRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
+      <PopupWithForm
+        popupData={{
+          classSelector: "edit-avatar",
+          formName: "profileAvatarEditor",
+          title: "Обновить аватар",
+          submitBtn: "Сохранить"
+        }}
+
+        isOpened={isEditAvatarPopupOpened}
+        onClose={closeAllPopups}
+        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      >
         <fieldset className="popup__form-fieldset">
           <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
           <span className="popup__error avatar-url-error" />
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ classSelector: "add-photocard", formName: "photocardAdding", title: "Новое место", submitBtn: "Создать", isOpened: isAddPlacePopupOpened, onClose: closeAllPopups, ref: popupAddPlaceRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}>
+      <PopupWithForm
+        popupData={{
+          classSelector: "add-photocard",
+          formName: "photocardAdding",
+          title: "Новое место",
+          submitBtn: "Создать"
+        }}
+
+        isOpened={isAddPlacePopupOpened}
+        onClose={closeAllPopups}
+        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      >
         <fieldset className="popup__form-fieldset">
           <input id="photocard-name" name="photocardName" type="text" placeholder="Название" defaultValue="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
           <span className="popup__error photocard-name-error" />
@@ -141,9 +134,24 @@ export default function App() {
         </fieldset>
       </PopupWithForm>
 
-      <PopupWithForm popup={{ classSelector: "confirmation-deletion", formName: "photocardConfirmationDeletion", title: "Вы уверены?", submitBtn: "Да", isOpened: isConfirmationCardDeletionPopupOpened, onClose: closeAllPopups, ref: popupConfirmationCardDeletionRef, closePopupOnOutsideClick: closePopupOnOutsideClick }} />
+      <PopupWithForm
+        popupData={{
+          classSelector: "confirmation-deletion",
+          formName: "photocardConfirmationDeletion",
+          title: "Вы уверены?",
+          submitBtn: "Да"
+        }}
 
-      <ImagePopup popup={{ card: selectedCard, onClose: closeAllPopups, ref: popupImageRef, closePopupOnOutsideClick: closePopupOnOutsideClick }}  />
+        isOpened={isConfirmationCardDeletionPopupOpened}
+        onClose={closeAllPopups}
+        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      />
+
+      <ImagePopup
+      card={selectedCard}
+      onClose={closeAllPopups}
+      closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      />
     </>
   );
 }

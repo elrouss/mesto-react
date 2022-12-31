@@ -1,10 +1,10 @@
-export default function ImagePopup({ popup }) {
+export default function ImagePopup(props) {
   return (
-    <div className={`popup popup_type_image ${Object.keys(popup.card).length !== 0 && 'popup_opened'}`} ref={popup.ref} onClick={popup.closePopupOnOutsideClick}>
+    <div className={`popup popup_type_image ${Object.keys(props.card).length !== 0 && 'popup_opened'}`} onClick={props.closePopupsOnOutsideClick}>
       <div className="popup__container-image">
-        <img src={popup.card.link} alt={`Описание фотографии: ${popup.card.name}`} className="popup__image" />
-        <h3 className="popup__image-caption">{popup.card.name}</h3>
-        <button type="button" aria-label="Закрытие модального окна" className="popup__closing-button" onClick={popup.onClose} />
+        <img src={props.card.link} alt={`Описание фотографии: ${props.card.name}`} className="popup__image" />
+        <h3 className="popup__image-caption">{props.card.name}</h3>
+        <button type="button" aria-label="Закрытие модального окна" className="popup__closing-button" onClick={props.onClose} />
       </div>
     </div>
   );
