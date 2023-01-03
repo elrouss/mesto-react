@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -49,20 +49,6 @@ export default function App() {
       closeAllPopups();
     };
   }, [closeAllPopups]);
-
-  useEffect(() => {
-    const closePopupsOnKeyPressEsc = evt => {
-      if (evt.key === 'Escape' && (isEditProfilePopupOpened || isAddPlacePopupOpened || isEditAvatarPopupOpened || isConfirmationCardDeletionPopupOpened || selectedCard)) {
-        closeAllPopups();
-      };
-    };
-
-    document.addEventListener('keydown', closePopupsOnKeyPressEsc);
-
-    return () => {
-      document.removeEventListener('keydown', closePopupsOnKeyPressEsc);
-    };
-  }, [isEditProfilePopupOpened, isAddPlacePopupOpened, isEditAvatarPopupOpened, isConfirmationCardDeletionPopupOpened, selectedCard, closeAllPopups]);
 
   return (
     <>

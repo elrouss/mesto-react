@@ -1,4 +1,8 @@
+import useClosePopupsOnKeyPressEsc from '../../hooks/useClosePopupsOnKeyPressEsc';
+
 export default function PopupWithForm({ popupData, ...props }) {
+  useClosePopupsOnKeyPressEsc(props.isOpened, props.onClose);
+
   return (
     <div className={`popup popup_type_${popupData.classSelector} ${props.isOpened && 'popup_opened'}`} onClick={props.closePopupsOnOutsideClick}>
       <div className="popup__container">
