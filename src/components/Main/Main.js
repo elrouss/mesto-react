@@ -22,7 +22,13 @@ export default function Main(props) {
       <section className="gallery" aria-label="Галерея карточек">
         {
           props.cards.map((card) => (
-            <Card key={card._id} card={card} handlePopup={props} handleCardLike={props} />
+            <Card
+              key={card._id}
+              card={card}
+              handlePopup={props}
+              handleCardLike={props}
+              handleCardDelete={props}
+            />
           ))
         }
       </section>

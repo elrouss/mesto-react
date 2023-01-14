@@ -3,7 +3,7 @@ import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Card(props) {
-  const { card, handlePopup, handleCardLike } = props;
+  const { card, handlePopup, handleCardLike, handleCardDelete } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
   const isOwn = card.owner._id === currentUser._id;
@@ -17,7 +17,7 @@ export default function Card(props) {
       <div className="gallery__item-image-container">
         <img src={card.link} alt={`Описание фотографии: ${card.name}`} className="gallery__item-image" onClick={() => handlePopup.onCardClick(card)} />
       </div>
-      {isOwn && <button type="button" aria-label="Удаление карточки" className="gallery__item-delete-button" onClick={handlePopup.onConfirmationCardDeletion} />}
+      {isOwn && <button type="button" aria-label="Удаление карточки" className="gallery__item-delete-button" onClick={() => handleCardDelete.onCardDelete(card)} />}
       <h2 className="gallery__item-title">{card.name}</h2>
       <div className="gallery__item-likes">
         <button type="button" aria-label="Лайк карточки" className={cardLikeButtonClassName} onClick={() => handleCardLike.onCardLike(card)} />
