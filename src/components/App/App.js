@@ -1,4 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
+import { api } from '../../utils/api.js';
 
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -14,6 +17,19 @@ export default function App() {
   const [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
+
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    Promise.all([api.getUserInfo(), api.getPhotocards()])
+      .then(([user, cards]) => {
+        setCurrentUser(user);
+        setCards(cards);
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе загрузки данных пользователя и галереи карточек: ${err}`);
+      })
+  }, []);
 
   function openEditProfilePopup() {
     setEditProfilePopupOpen(true);
@@ -53,91 +69,95 @@ export default function App() {
   return (
     <>
       <Header />
-      <Main
-        onEditProfile={openEditProfilePopup}
-        onAddPlace={openAddPlacePopup}
-        onEditAvatar={openEditAvatarPopup}
-        onConfirmationCardDeletion={openConfirmationCardDeletionPopup}
-        onCardClick={handleCardClick}
-      />
-      <Footer />
 
-      <PopupWithForm
-        popupData={{
-          classSelector: "edit-profile",
-          formName: "profileInfoEditor",
-          title: "Редактировать профиль",
-          submitBtn: "Сохранить",
-        }}
+      <CurrentUserContext.Provider value={currentUser}>
+        <Main
+          onEditProfile={openEditProfilePopup}
+          onAddPlace={openAddPlacePopup}
+          onEditAvatar={openEditAvatarPopup}
+          onConfirmationCardDeletion={openConfirmationCardDeletionPopup}
+          onCardClick={handleCardClick}
+          cards={cards}
+        />
+        <Footer />
 
-        isOpened={isEditProfilePopupOpened}
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      >
-        <fieldset className="popup__form-fieldset">
-          <input id="input-name" name="profileName" type="text" defaultValue="" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
-          <span className="popup__error input-name-error" />
-          <input id="input-job" name="profileJob" type="text" defaultValue="" placeholder="О себе" minLength="2" maxLength="200" required className="popup__form-field popup__form-field_type_profile-job" />
-          <span className="popup__error input-job-error" />
-        </fieldset>
-      </PopupWithForm>
+        <PopupWithForm
+          popupData={{
+            classSelector: "edit-profile",
+            formName: "profileInfoEditor",
+            title: "Редактировать профиль",
+            submitBtn: "Сохранить",
+          }}
 
-      <PopupWithForm
-        popupData={{
-          classSelector: "edit-avatar",
-          formName: "profileAvatarEditor",
-          title: "Обновить аватар",
-          submitBtn: "Сохранить"
-        }}
+          isOpened={isEditProfilePopupOpened}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        >
+          <fieldset className="popup__form-fieldset">
+            <input id="input-name" name="profileName" type="text" defaultValue="" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
+            <span className="popup__error input-name-error" />
+            <input id="input-job" name="profileJob" type="text" defaultValue="" placeholder="О себе" minLength="2" maxLength="200" required className="popup__form-field popup__form-field_type_profile-job" />
+            <span className="popup__error input-job-error" />
+          </fieldset>
+        </PopupWithForm>
 
-        isOpened={isEditAvatarPopupOpened}
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      >
-        <fieldset className="popup__form-fieldset">
-          <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
-          <span className="popup__error avatar-url-error" />
-        </fieldset>
-      </PopupWithForm>
+        <PopupWithForm
+          popupData={{
+            classSelector: "edit-avatar",
+            formName: "profileAvatarEditor",
+            title: "Обновить аватар",
+            submitBtn: "Сохранить"
+          }}
 
-      <PopupWithForm
-        popupData={{
-          classSelector: "add-photocard",
-          formName: "photocardAdding",
-          title: "Новое место",
-          submitBtn: "Создать"
-        }}
+          isOpened={isEditAvatarPopupOpened}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        >
+          <fieldset className="popup__form-fieldset">
+            <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
+            <span className="popup__error avatar-url-error" />
+          </fieldset>
+        </PopupWithForm>
 
-        isOpened={isAddPlacePopupOpened}
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      >
-        <fieldset className="popup__form-fieldset">
-          <input id="photocard-name" name="photocardName" type="text" placeholder="Название" defaultValue="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
-          <span className="popup__error photocard-name-error" />
-          <input id="photocard-url" name="photocardLink" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_add-photocard-link" />
-          <span className="popup__error photocard-url-error" />
-        </fieldset>
-      </PopupWithForm>
+        <PopupWithForm
+          popupData={{
+            classSelector: "add-photocard",
+            formName: "photocardAdding",
+            title: "Новое место",
+            submitBtn: "Создать"
+          }}
 
-      <PopupWithForm
-        popupData={{
-          classSelector: "confirmation-deletion",
-          formName: "photocardConfirmationDeletion",
-          title: "Вы уверены?",
-          submitBtn: "Да"
-        }}
+          isOpened={isAddPlacePopupOpened}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        >
+          <fieldset className="popup__form-fieldset">
+            <input id="photocard-name" name="photocardName" type="text" placeholder="Название" defaultValue="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
+            <span className="popup__error photocard-name-error" />
+            <input id="photocard-url" name="photocardLink" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_add-photocard-link" />
+            <span className="popup__error photocard-url-error" />
+          </fieldset>
+        </PopupWithForm>
 
-        isOpened={isConfirmationCardDeletionPopupOpened}
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      />
+        <PopupWithForm
+          popupData={{
+            classSelector: "confirmation-deletion",
+            formName: "photocardConfirmationDeletion",
+            title: "Вы уверены?",
+            submitBtn: "Да"
+          }}
 
-      <ImagePopup
-      card={selectedCard}
-      onClose={closeAllPopups}
-      closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      />
+          isOpened={isConfirmationCardDeletionPopupOpened}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        />
+
+        <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        />
+      </CurrentUserContext.Provider>
     </>
   );
-}
+};
