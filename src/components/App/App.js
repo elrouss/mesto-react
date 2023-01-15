@@ -7,9 +7,9 @@ import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Footer from '../Footer/Footer.js';
 
-import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 import EditProfilePopup from '../EditProfilePopup/EditProfilePopup.js';
 import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup.js';
+import AddPlacePopup from '../AddPlacePopup/AddPlacePopup.js';
 import ImagePopup from '../ImagePopup/ImagePopup.js';
 
 export default function App() {
@@ -117,6 +117,7 @@ export default function App() {
   return (
     <>
       <Header />
+
       <CurrentUserContext.Provider value={currentUser}>
         <Main
           onEditProfile={openEditProfilePopup}
@@ -129,8 +130,11 @@ export default function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
         />
-        <Footer />
+      </CurrentUserContext.Provider>
 
+      <Footer />
+
+      <CurrentUserContext.Provider value={currentUser}>
         <EditProfilePopup
           onUpdateUser={handleUpdateUser}
           isOpened={isEditProfilePopupOpened}
@@ -145,25 +149,11 @@ export default function App() {
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
         />
 
-        <PopupWithForm
-          popupData={{
-            classSelector: "add-photocard",
-            formName: "photocardAdding",
-            title: "Новое место",
-            submitBtn: "Создать"
-          }}
-
+        <AddPlacePopup
           isOpened={isAddPlacePopupOpened}
           onClose={closeAllPopups}
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        >
-          <fieldset className="popup__form-fieldset">
-            <input id="photocard-name" name="photocardName" type="text" placeholder="Название" defaultValue="" minLength="1" maxLength="30" required className="popup__form-field popup__form-field_type_add-photocard-name" />
-            <span className="popup__error photocard-name-error" />
-            <input id="photocard-url" name="photocardLink" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_add-photocard-link" />
-            <span className="popup__error photocard-url-error" />
-          </fieldset>
-        </PopupWithForm>
+        />
 
         {/* <PopupWithForm
         popupData={{
