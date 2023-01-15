@@ -92,6 +92,17 @@ export default function App() {
       })
   };
 
+  function handleAddPlaceSubmit(data) {
+    api.addNewСard(data.name, data.link)
+      .then((card) => {
+        setCards([card, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе добавления новой карточки в галерею: ${err}`);
+      })
+  };
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(user => user._id === currentUser._id);
 
@@ -150,6 +161,7 @@ export default function App() {
         />
 
         <AddPlacePopup
+          onAddPlace={handleAddPlaceSubmit}
           isOpened={isAddPlacePopupOpened}
           onClose={closeAllPopups}
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
