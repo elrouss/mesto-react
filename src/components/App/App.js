@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import { api } from '../../utils/api.js';
@@ -77,7 +77,18 @@ export default function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        console.log(`Ошибка в процессе редактировании информации пользователя: ${err}`);
+        console.log(`Ошибка в процессе редактирования информации пользователя: ${err}`);
+      })
+  };
+
+  function handleUpdateAvatar(data) {
+    api.setUserAvatar(data.avatar)
+      .then((avatar) => {
+        setCurrentUser(avatar);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе изменения аватара пользователя: ${err}`);
       })
   };
 
@@ -128,6 +139,7 @@ export default function App() {
         />
 
         <EditAvatarPopup
+          onUpdateAvatar={handleUpdateAvatar}
           isOpened={isEditAvatarPopupOpened}
           onClose={closeAllPopups}
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
