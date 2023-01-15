@@ -21,7 +21,7 @@ export default function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  
+
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getPhotocards()])
       .then(([user, cards]) => {
@@ -68,6 +68,18 @@ export default function App() {
     };
   }, [closeAllPopups]);
 
+
+  function handleUpdateUser(data) {
+    api.setUserInfo(data.name, data.about)
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка в процессе редактировании информации пользователя: ${err}`);
+      })
+  }
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(user => user._id === currentUser._id);
 
@@ -108,6 +120,7 @@ export default function App() {
         <Footer />
 
         <EditProfilePopup
+          onUpdateUser={handleUpdateUser}
           isOpened={isEditProfilePopupOpened}
           onClose={closeAllPopups}
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}

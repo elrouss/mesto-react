@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function EditProfilePopup(props) {
-  const { isOpened, onClose, closePopupsOnOutsideClick } = props;
+  const { onUpdateUser, isOpened, onClose, closePopupsOnOutsideClick } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -18,11 +18,20 @@ export default function EditProfilePopup(props) {
 
   function handleChangeName(evt) {
     setName(evt.target.value);
-  }
+  };
 
   function handleChangeDescription(evt) {
     setDescription(evt.target.value);
-  }
+  };
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+
+    onUpdateUser({
+      name: name,
+      about: description,
+    });
+  };
 
   return (
     <PopupWithForm
@@ -33,6 +42,7 @@ export default function EditProfilePopup(props) {
         submitBtn: "Сохранить",
       }}
 
+      onSubmit={handleSubmit}
       isOpened={isOpened}
       onClose={onClose}
       closePopupsOnOutsideClick={closePopupsOnOutsideClick}

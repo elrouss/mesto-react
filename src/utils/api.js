@@ -4,37 +4,37 @@ const apiSettings = {
     authorization: 'ab13029f-8c56-4dec-b26e-24c2c3894c0c',
     'Content-type': 'application/json'
   }
-}
+};
 
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-  }
+  };
 
   _checkResponse(response) {
     if (response.ok) {
       return response.json();
     } else {
       Promise.reject(`Ошибка: ${response.status}/${response.statusText}`);
-    }
-  }
+    };
+  };
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
       .then(this._checkResponse);
-  }
+  };
 
-  editUserInfo(name, about) {
+  setUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ name, about })
     })
       .then(this._checkResponse);
-  }
+  };
 
   editUserAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -43,14 +43,14 @@ class Api {
       body: JSON.stringify({ avatar })
     })
       .then(this._checkResponse);
-  }
+  };
 
   getPhotocards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
       .then(this._checkResponse);
-  }
+  };
 
   addNewСard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -59,7 +59,7 @@ class Api {
       body: JSON.stringify({ name, link })
     })
       .then(this._checkResponse);
-  }
+  };
 
   deleteСard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
@@ -67,7 +67,7 @@ class Api {
       headers: this._headers
     })
       .then(this._checkResponse);
-  }
+  };
 
   changeLikeCardStatus(id, isLiked) {
     if (!isLiked) {
@@ -82,8 +82,8 @@ class Api {
         headers: this._headers
       })
         .then(this._checkResponse);
-    }
-  }
-}
+    };
+  };
+};
 
 export const api = new Api(apiSettings);
