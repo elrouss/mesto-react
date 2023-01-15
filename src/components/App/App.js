@@ -11,6 +11,7 @@ import EditProfilePopup from '../EditProfilePopup/EditProfilePopup.js';
 import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup.js';
 import AddPlacePopup from '../AddPlacePopup/AddPlacePopup.js';
 import ImagePopup from '../ImagePopup/ImagePopup.js';
+import ConfirmCardDeletionPopup from '../ConfirmCardDeletionPopup/ConfirmCardDeletionPopup.js';
 
 export default function App() {
   const [isEditProfilePopupOpened, setEditProfilePopupOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function App() {
   const [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
+  const [activeCardId, setActiveCardId] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -46,8 +48,9 @@ export default function App() {
     setEditAvatarPopupOpen(true);
   };
 
-  function openConfirmationCardDeletionPopup() {
+  function openConfirmationCardDeletionPopup(card) {
     setConfirmationCardDeletionPopupOpened(true);
+    setActiveCardId(card._id);
   };
 
   function handleCardClick(cardData) {
@@ -115,10 +118,11 @@ export default function App() {
       })
   };
 
-  function handleCardDelete(card) {
-    api.deleteСard(card._id)
+  function handleCardDelete(activeCardId) {
+    api.deleteСard(activeCardId)
       .then(() => {
-        setCards(cards.filter(c => c._id !== card._id));
+        setCards(cards.filter(c => c._id !== activeCardId));
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(`Ошибка в процессе удаления карточки из галереи: ${err}`);
@@ -139,7 +143,6 @@ export default function App() {
 
           cards={cards}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
         />
       </CurrentUserContext.Provider>
 
@@ -167,19 +170,13 @@ export default function App() {
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
         />
 
-        {/* <PopupWithForm
-        popupData={{
-          classSelector: "confirmation-deletion",
-          formName: "photocardConfirmationDeletion",
-          title: "Вы уверены?",
-          submitBtn: "Да"
-        }}
-
-        isOpened={isConfirmationCardDeletionPopupOpened}
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      /> */}
-        {/* TODO: Перенести логику удаления карточки в окно подтверждения удаления карточки */}
+        <ConfirmCardDeletionPopup
+          activeCardId={activeCardId}
+          onCardDelete={handleCardDelete}
+          isOpened={isConfirmationCardDeletionPopupOpened}
+          onClose={closeAllPopups}
+          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+        />
 
         <ImagePopup
           card={selectedCard}
