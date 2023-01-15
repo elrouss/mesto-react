@@ -1,7 +1,28 @@
+import React, { useState } from "react";
+
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function EditProfilePopup(props) {
   const { isOpened, onClose, closePopupsOnOutsideClick } = props;
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
+
+  function handleChangeName(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleChangeDescription(evt) {
+    setDescription(evt.target.value);
+  }
 
   return (
     <PopupWithForm
@@ -17,9 +38,9 @@ export default function EditProfilePopup(props) {
       closePopupsOnOutsideClick={closePopupsOnOutsideClick}
     >
       <fieldset className="popup__form-fieldset">
-        <input id="input-name" name="profileName" type="text" defaultValue="" placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
+        <input id="input-name" name="profileName" type="text" value={name} onChange={handleChangeName} placeholder="Имя" minLength="2" maxLength="40" required className="popup__form-field popup__form-field_type_profile-name" />
         <span className="popup__error input-name-error" />
-        <input id="input-job" name="profileJob" type="text" defaultValue="" placeholder="О себе" minLength="2" maxLength="200" required className="popup__form-field popup__form-field_type_profile-job" />
+        <input id="input-job" name="profileJob" type="text" value={description} onChange={handleChangeDescription} placeholder="О себе" minLength="2" maxLength="200" required className="popup__form-field popup__form-field_type_profile-job" />
         <span className="popup__error input-job-error" />
       </fieldset>
     </PopupWithForm>

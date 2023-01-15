@@ -21,6 +21,7 @@ export default function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getPhotocards()])
       .then(([user, cards]) => {
