@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer.js';
 
 import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 import EditProfilePopup from '../EditProfilePopup/EditProfilePopup.js';
+import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup.js';
 import ImagePopup from '../ImagePopup/ImagePopup.js';
 
 export default function App() {
@@ -126,23 +127,11 @@ export default function App() {
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
         />
 
-        <PopupWithForm
-          popupData={{
-            classSelector: "edit-avatar",
-            formName: "profileAvatarEditor",
-            title: "Обновить аватар",
-            submitBtn: "Сохранить"
-          }}
-
+        <EditAvatarPopup
           isOpened={isEditAvatarPopupOpened}
           onClose={closeAllPopups}
           closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        >
-          <fieldset className="popup__form-fieldset">
-            <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className="popup__form-field popup__form-field_type_edit-avatar-link" />
-            <span className="popup__error avatar-url-error" />
-          </fieldset>
-        </PopupWithForm>
+        />
 
         <PopupWithForm
           popupData={{
