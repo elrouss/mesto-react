@@ -78,7 +78,7 @@ export default function App() {
       .catch((err) => {
         console.log(`Ошибка в процессе редактировании информации пользователя: ${err}`);
       })
-  }
+  };
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(user => user._id === currentUser._id);
