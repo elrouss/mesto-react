@@ -31,6 +31,7 @@ export default function AddPlacePopup(props) {
     <PopupWithForm
       popupData={{
         classSelector: "add-photocard",
+        classSelectorModifierForm: "popup__form_type_photocards",
         formName: "photocardAdding",
         title: "Новое место",
         submitBtn: "Создать"

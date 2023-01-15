@@ -37,6 +37,7 @@ export default function EditProfilePopup(props) {
     <PopupWithForm
       popupData={{
         classSelector: "edit-profile",
+        classSelectorModifierForm: "popup__form_type_profile",
         formName: "profileInfoEditor",
         title: "Редактировать профиль",
         submitBtn: "Сохранить",

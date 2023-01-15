@@ -28,6 +28,7 @@ export default function EditAvatarPopup(props) {
     <PopupWithForm
       popupData={{
         classSelector: "edit-avatar",
+        classSelectorModifierForm: "popup__form_type_avatar",
         formName: "profileAvatarEditor",
         title: "Обновить аватар",
         submitBtn: "Сохранить"
