@@ -1,4 +1,4 @@
-import PopupWithForm from "../PopupWithForm/PopupWithForm"
+import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function ConfirmCardDeletionPopup(props) {
   const { activeCardId, onCardDelete, isOpened, onClose, closePopupsOnOutsideClick } = props;
@@ -14,10 +14,11 @@ export default function ConfirmCardDeletionPopup(props) {
       popupData={{
         classSelector: "confirmation-deletion",
         classSelectorModifierForm: "popup__form_type_confirmation-deletion",
+        classSelectorModifierSubmitBtn: "popup__submit-button_type_confirmation-deletion",
         formName: "photocardConfirmationDeletion",
         title: "Вы уверены?",
         submitBtn: "Да",
-        classSelectorModifierSubmitBtn: "popup__submit-button_type_confirmation-deletion"
+        submitBtnLoading: "Удаление..."
       }}
 
       onSubmit={handleSubmit}

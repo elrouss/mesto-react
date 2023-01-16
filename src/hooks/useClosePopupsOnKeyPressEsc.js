@@ -18,4 +18,4 @@ export default function useClosePopupsOnKeyPressEsc(isOpened, handleClose) {
       document.removeEventListener('keydown', handleEscBtn);
     };
   }, [isOpened, handleClose]);
-}
+};

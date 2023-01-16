@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
+import { ProcessLoadingSpinnerContext } from '../../contexts/ProcessLoadingSpinnerContext.js';
 import { api } from '../../utils/api.js';
 
 import Header from '../Header/Header.js';
@@ -18,6 +19,8 @@ export default function App() {
   const [isAddPlacePopupOpened, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpened, setEditAvatarPopupOpen] = useState(false);
   const [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened] = useState(false);
+
+  const [isProcessLoading, setIsProcessLoading] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
   const [activeCardId, setActiveCardId] = useState('');
@@ -74,6 +77,8 @@ export default function App() {
 
 
   function handleUpdateUser(data) {
+    setIsProcessLoading(true);
+
     api.setUserInfo(data.name, data.about)
       .then((user) => {
         setCurrentUser(user);
@@ -82,9 +87,14 @@ export default function App() {
       .catch((err) => {
         console.log(`Ошибка в процессе редактирования информации пользователя: ${err}`);
       })
+      .finally(() => {
+        setIsProcessLoading(false);
+      })
   };
 
   function handleUpdateAvatar(data) {
+    setIsProcessLoading(true);
+
     api.setUserAvatar(data.avatar)
       .then((avatar) => {
         setCurrentUser(avatar);
@@ -93,9 +103,14 @@ export default function App() {
       .catch((err) => {
         console.log(`Ошибка в процессе изменения аватара пользователя: ${err}`);
       })
+      .finally(() => {
+        setIsProcessLoading(false);
+      })
   };
 
   function handleAddPlaceSubmit(data) {
+    setIsProcessLoading(true);
+
     api.addNewСard(data.name, data.link)
       .then((card) => {
         setCards([card, ...cards]);
@@ -103,6 +118,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(`Ошибка в процессе добавления новой карточки в галерею: ${err}`);
+      })
+      .finally(() => {
+        setIsProcessLoading(false);
       })
   };
 
@@ -119,6 +137,8 @@ export default function App() {
   };
 
   function handleCardDelete(activeCardId) {
+    setIsProcessLoading(true);
+
     api.deleteСard(activeCardId)
       .then(() => {
         setCards(cards.filter(c => c._id !== activeCardId));
@@ -126,6 +146,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(`Ошибка в процессе удаления карточки из галереи: ${err}`);
+      })
+      .finally(() => {
+        setIsProcessLoading(false);
       })
   };
 
@@ -149,34 +172,36 @@ export default function App() {
       <Footer />
 
       <CurrentUserContext.Provider value={currentUser}>
-        <EditProfilePopup
-          onUpdateUser={handleUpdateUser}
-          isOpened={isEditProfilePopupOpened}
-          onClose={closeAllPopups}
-          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        />
+        <ProcessLoadingSpinnerContext.Provider value={isProcessLoading}>
+          <EditProfilePopup
+            onUpdateUser={handleUpdateUser}
+            isOpened={isEditProfilePopupOpened}
+            onClose={closeAllPopups}
+            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+          />
 
-        <EditAvatarPopup
-          onUpdateAvatar={handleUpdateAvatar}
-          isOpened={isEditAvatarPopupOpened}
-          onClose={closeAllPopups}
-          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        />
+          <EditAvatarPopup
+            onUpdateAvatar={handleUpdateAvatar}
+            isOpened={isEditAvatarPopupOpened}
+            onClose={closeAllPopups}
+            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+          />
 
-        <AddPlacePopup
-          onAddPlace={handleAddPlaceSubmit}
-          isOpened={isAddPlacePopupOpened}
-          onClose={closeAllPopups}
-          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        />
+          <AddPlacePopup
+            onAddPlace={handleAddPlaceSubmit}
+            isOpened={isAddPlacePopupOpened}
+            onClose={closeAllPopups}
+            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+          />
 
-        <ConfirmCardDeletionPopup
-          activeCardId={activeCardId}
-          onCardDelete={handleCardDelete}
-          isOpened={isConfirmationCardDeletionPopupOpened}
-          onClose={closeAllPopups}
-          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        />
+          <ConfirmCardDeletionPopup
+            activeCardId={activeCardId}
+            onCardDelete={handleCardDelete}
+            isOpened={isConfirmationCardDeletionPopupOpened}
+            onClose={closeAllPopups}
+            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+          />
+        </ProcessLoadingSpinnerContext.Provider>
 
         <ImagePopup
           card={selectedCard}
