@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://elrouss.github.io/mesto-react/">
-    <img src="https://user-images.githubusercontent.com/108838349/212987501-fb372d45-e9c6-43c6-8f18-7cb212535021.gif" width="450">
+    <img src="https://user-images.githubusercontent.com/108838349/212987501-fb372d45-e9c6-43c6-8f18-7cb212535021.gif" width="550">
   </a>
 </div>
 
