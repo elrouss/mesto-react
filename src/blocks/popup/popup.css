@@ -14,5 +14,5 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility .4s, opacity ease .4s;
+  transition: visibility ease .4s, opacity ease .4s;
 }
