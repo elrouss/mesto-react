@@ -4,95 +4,86 @@ const apiSettings = {
     authorization: 'ab13029f-8c56-4dec-b26e-24c2c3894c0c',
     'Content-type': 'application/json'
   }
-}
+};
 
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-  }
+  };
 
-  // Проверка статуса
   _checkResponse(response) {
     if (response.ok) {
       return response.json();
     } else {
       Promise.reject(`Ошибка: ${response.status}/${response.statusText}`);
-    }
-  }
+    };
+  };
 
-  // Получение информации о пользователе
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Изменение информации о пользователе
-  editUserInfo(name, about) {
+  setUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ name, about })
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Обновление аватара
-  editUserAvatar(avatar) {
+  setUserAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ avatar })
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Получение массива карточек
   getPhotocards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Добавление новой карточки в галерею
-  addNewPhotocard(name, link) {
+  addNewСard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ name, link })
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Удаление карточки
-  deletePhotocard(id) {
+  deleteСard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkResponse);
-  }
+      .then(this._checkResponse);
+  };
 
-  // Добавление лайка
-  addPhotocardLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-    })
-    .then(this._checkResponse);
-  }
-
-  // Удаление лайка
-  deletePhotocardLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-    .then(this._checkResponse);
-  }
-}
+  changeLikeCardStatus(id, isLiked) {
+    if (!isLiked) {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method: 'PUT',
+        headers: this._headers
+      })
+        .then(this._checkResponse);
+    } else {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method: 'DELETE',
+        headers: this._headers
+      })
+        .then(this._checkResponse);
+    };
+  };
+};
 
 export const api = new Api(apiSettings);

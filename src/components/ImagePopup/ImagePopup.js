@@ -13,4 +13,4 @@ export default function ImagePopup(props) {
       </div>
     </div>
   );
-}
+};
