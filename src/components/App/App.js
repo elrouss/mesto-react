@@ -173,26 +173,32 @@ export default function App() {
 
       <CurrentUserContext.Provider value={currentUser}>
         <ProcessLoadingSpinnerContext.Provider value={isProcessLoading}>
-          <EditProfilePopup
-            onUpdateUser={handleUpdateUser}
-            isOpened={isEditProfilePopupOpened}
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-          />
+          {isEditProfilePopupOpened &&
+            <EditProfilePopup
+              onUpdateUser={handleUpdateUser}
+              isOpened={isEditProfilePopupOpened}
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            />
+          }
 
-          <EditAvatarPopup
-            onUpdateAvatar={handleUpdateAvatar}
-            isOpened={isEditAvatarPopupOpened}
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-          />
+          {isEditAvatarPopupOpened &&
+            <EditAvatarPopup
+              onUpdateAvatar={handleUpdateAvatar}
+              isOpened={isEditAvatarPopupOpened}
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            />
+          }
 
-          <AddPlacePopup
-            onAddPlace={handleAddPlaceSubmit}
-            isOpened={isAddPlacePopupOpened}
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-          />
+          {isAddPlacePopupOpened &&
+            <AddPlacePopup
+              onAddPlace={handleAddPlaceSubmit}
+              isOpened={isAddPlacePopupOpened}
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            />
+          }
 
           <ConfirmCardDeletionPopup
             activeCardId={activeCardId}
