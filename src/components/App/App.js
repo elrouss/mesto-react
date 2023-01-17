@@ -75,21 +75,24 @@ export default function App() {
     };
   }, [closeAllPopups]);
 
-
   function handleUpdateUser(data) {
-    setIsProcessLoading(true);
+    if (data.name === currentUser.name && data.about === currentUser.about) {
+      closeAllPopups();
+    } else {
+      setIsProcessLoading(true);
 
-    api.setUserInfo(data.name, data.about)
-      .then((user) => {
-        setCurrentUser(user);
-        closeAllPopups();
-      })
-      .catch((err) => {
-        console.log(`Ошибка в процессе редактирования информации пользователя: ${err}`);
-      })
-      .finally(() => {
-        setIsProcessLoading(false);
-      })
+      api.setUserInfo(data.name, data.about)
+        .then((user) => {
+          setCurrentUser(user);
+          closeAllPopups();
+        })
+        .catch((err) => {
+          console.log(`Ошибка в процессе редактирования информации пользователя: ${err}`);
+        })
+        .finally(() => {
+          setIsProcessLoading(false);
+        })
+    };
   };
 
   function handleUpdateAvatar(data) {
