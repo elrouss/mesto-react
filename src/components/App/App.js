@@ -202,13 +202,13 @@ export default function App() {
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
           />
         </ProcessLoadingSpinnerContext.Provider>
-
-        <ImagePopup
-          card={selectedCard}
-          onClose={closeAllPopups}
-          closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-        />
       </CurrentUserContext.Provider>
+
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      />
     </>
   );
 };
