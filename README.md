@@ -1,5 +1,11 @@
 <h1 align="center">Проект: "Место"</h1>
 
+<div align="center">
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img src="https://user-images.githubusercontent.com/108838349/212987501-fb372d45-e9c6-43c6-8f18-7cb212535021.gif" width="450">
+  </a>
+</div>
+
 ## Описание проекта
 Данная проектная работа составлена в рамках образовательной программы <a href="https://practicum.yandex.ru/">Яндекс Практикума</a>. Проект представляет собой портирование на "Реакт" адаптивного одностраничного сайта с профилем пользователя и фотокарточками, <a href="https://github.com/elrouss/mesto">изначально написанного</a> на нативных технологиях: HTML5, CSS3 и JavaScript. Он повторяет основной функционал популярных соцсетей: Instagram, Facebook, VKontakte
 
@@ -39,6 +45,15 @@
 1. https://github.com/elrouss/mesto-react.git - клонировать репозиторий
 2. npm i - установить зависимости
 3. npm start - запустить приложение в режиме разработчика (ввести ссылку [http://localhost:3000](http://localhost:3000) и увидеть приложение в своем браузере). В процессе изменения кода страница будет автоматически перезагружаться
+
+<div align="center">
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="370" src="https://user-images.githubusercontent.com/108838349/212988411-b9432993-edba-453d-8a73-334faf7f2f87.png">
+  </a>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="450" src="https://user-images.githubusercontent.com/108838349/212988602-f0b32fcd-88a0-4135-8d3a-81fa35de94a9.png">
+  </a>
+</div>
 
 ### Ссылка на проект: https://elrouss.github.io/mesto-react/
 <i>* - проект прошел обязательное код-ревью</i>
