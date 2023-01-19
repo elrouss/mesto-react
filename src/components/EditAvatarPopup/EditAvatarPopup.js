@@ -24,10 +24,14 @@ export default function EditAvatarPopup(props) {
     onUpdateAvatar({
       avatar: avatarRef.current.value
     });
-
-    evt.target.reset();
-    setLink('');
   };
+
+  useEffect(() => {
+    if (isOpened) {
+      setLink('');
+      avatarRef.current.value = '';
+    };
+  }, [isOpened, avatarRef]);
 
   function handleNewAvatarLink(evt) {
     setLink(evt.target.value);
