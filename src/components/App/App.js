@@ -141,7 +141,7 @@ export default function App() {
 
     api.changeLikeCardStatus(card._id, isLiked)
       .then((cardLike) => {
-        setCards(cards.map(c => c._id === card._id ? cardLike : c));
+        setCards(state => state.map(c => c._id === card._id ? cardLike : c));
       })
       .catch((err) => {
         console.log(`Ошибка в процессе добавления/снятия лайка карточки в галерее: ${err}`);
@@ -153,7 +153,7 @@ export default function App() {
 
     api.deleteСard(activeCardId)
       .then(() => {
-        setCards(cards.filter(c => c._id !== activeCardId));
+        setCards(state => state.filter(c => c._id !== activeCardId));
         closeAllPopups();
       })
       .catch((err) => {
