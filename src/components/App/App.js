@@ -61,16 +61,18 @@ export default function App() {
   };
 
   const closeAllPopups = useCallback(() => {
-    isEditProfilePopupOpened && setEditProfilePopupOpen(false);
-    isAddPlacePopupOpened && setAddPlacePopupOpen(false);
-    isEditAvatarPopupOpened && setEditAvatarPopupOpen(false);
-    isConfirmationCardDeletionPopupOpened && setConfirmationCardDeletionPopupOpened(false);
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setEditAvatarPopupOpen(false);
+    setConfirmationCardDeletionPopupOpened(false);
 
-    selectedCard && setSelectedCard({});
-  }, [isEditProfilePopupOpened, isAddPlacePopupOpened, isEditAvatarPopupOpened, isConfirmationCardDeletionPopupOpened, selectedCard]);
+    setSelectedCard({});
+  }, []);
 
   const closePopupsOnOutsideClick = useCallback((evt) => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__closing-button')) {
+    const target = evt.target;
+
+    if (target.classList.contains('popup_opened') || target.classList.contains('popup__closing-button')) {
       closeAllPopups();
     };
   }, [closeAllPopups]);
