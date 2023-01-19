@@ -216,7 +216,7 @@ export default function App() {
 
       <ImagePopup
         card={selectedCard}
-        
+
         onClose={closeAllPopups}
         closePopupsOnOutsideClick={closePopupsOnOutsideClick}
       />
