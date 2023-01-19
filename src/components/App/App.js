@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
-import { ProcessLoadingSpinnerContext } from '../../contexts/ProcessLoadingSpinnerContext.js';
 import { api } from '../../utils/api.js';
 
 import Header from '../Header/Header.js';
@@ -177,40 +176,47 @@ export default function App() {
       <Footer />
 
       <CurrentUserContext.Provider value={currentUser}>
-        <ProcessLoadingSpinnerContext.Provider value={isProcessLoading}>
           <EditProfilePopup
             onUpdateUser={handleUpdateUser}
             isOpened={isEditProfilePopupOpened}
+
             onClose={closeAllPopups}
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            isProcessLoading={isProcessLoading}
           />
 
           <EditAvatarPopup
             onUpdateAvatar={handleUpdateAvatar}
             isOpened={isEditAvatarPopupOpened}
+
             onClose={closeAllPopups}
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            isProcessLoading={isProcessLoading}
           />
 
           <AddPlacePopup
             onAddPlace={handleAddPlaceSubmit}
             isOpened={isAddPlacePopupOpened}
+
             onClose={closeAllPopups}
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            isProcessLoading={isProcessLoading}
           />
 
           <ConfirmCardDeletionPopup
             activeCardId={activeCardId}
             onCardDelete={handleCardDelete}
             isOpened={isConfirmationCardDeletionPopupOpened}
+
             onClose={closeAllPopups}
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+            isProcessLoading={isProcessLoading}
           />
-        </ProcessLoadingSpinnerContext.Provider>
       </CurrentUserContext.Provider>
 
       <ImagePopup
         card={selectedCard}
+        
         onClose={closeAllPopups}
         closePopupsOnOutsideClick={closePopupsOnOutsideClick}
       />

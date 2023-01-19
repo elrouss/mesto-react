@@ -1,10 +1,7 @@
-import { useContext } from 'react';
-
-import { ProcessLoadingSpinnerContext } from '../../contexts/ProcessLoadingSpinnerContext';
 import useClosePopupsOnKeyPressEsc from '../../hooks/useClosePopupsOnKeyPressEsc';
 
 export default function PopupWithForm({ popupData, ...props }) {
-  const isProcessLoading = useContext(ProcessLoadingSpinnerContext);
+  const { isProcessLoading } = props;
 
   useClosePopupsOnKeyPressEsc(props.isOpened, props.onClose);
 

@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function EditAvatarPopup(props) {
-  const { onUpdateAvatar, isOpened, onClose, closePopupsOnOutsideClick } = props;
+  const { onUpdateAvatar, isOpened, onClose, closePopupsOnOutsideClick, isProcessLoading } = props;
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -58,6 +58,7 @@ export default function EditAvatarPopup(props) {
       isOpened={isOpened}
       onClose={onClose}
       closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      isProcessLoading={isProcessLoading}
     >
       <fieldset className="popup__form-fieldset">
         <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className={`popup__form-field ${((!isNewAvatarLink(link) && link !== '') || isFocusedLink) && 'popup__form-field_type_error'} popup__form-field_type_edit-avatar-link`} ref={avatarRef} onChange={(evt) => handleNewAvatarLink(evt)} onFocus={() => setIsFocusedLink(true)} onBlur={() => setIsFocusedLink(false)} />

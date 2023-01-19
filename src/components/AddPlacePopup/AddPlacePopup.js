@@ -2,7 +2,7 @@ import { useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function AddPlacePopup(props) {
-  const { onAddPlace, isOpened, onClose, closePopupsOnOutsideClick } = props;
+  const { onAddPlace, isOpened, onClose, closePopupsOnOutsideClick, isProcessLoading } = props;
 
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
@@ -61,6 +61,7 @@ export default function AddPlacePopup(props) {
       isOpened={isOpened}
       onClose={onClose}
       closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+      isProcessLoading={isProcessLoading}
     >
       <fieldset className="popup__form-fieldset">
         <input id="photocard-name" name="photocardName" type="text" placeholder="Название" value={name} onChange={handleNewCardName} maxLength="30" required className={`popup__form-field ${(isFocusedName && !isInputValueValid(newCardNameLength)) && 'popup__form-field_type_error'} popup__form-field_type_add-photocard-name`} onFocus={() => setIsFocusedName(true)} onBlur={() => setIsFocusedName(false)} />
