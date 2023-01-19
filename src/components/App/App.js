@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import { api } from '../../utils/api.js';
 
+import Preloader from '../Preloader/Preloader.js';
+
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Footer from '../Footer/Footer.js';
@@ -19,6 +21,7 @@ export default function App() {
   const [isEditAvatarPopupOpened, setEditAvatarPopupOpen] = useState(false);
   const [isConfirmationCardDeletionPopupOpened, setConfirmationCardDeletionPopupOpened] = useState(false);
 
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [isProcessLoading, setIsProcessLoading] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
@@ -28,6 +31,8 @@ export default function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    setIsPageLoading(true);
+
     Promise.all([api.getUserInfo(), api.getPhotocards()])
       .then(([user, cards]) => {
         setCurrentUser(user);
@@ -35,6 +40,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(`Ошибка в процессе загрузки данных пользователя и галереи карточек: ${err}`);
+      })
+      .finally(() => {
+        setIsPageLoading(false);
       })
   }, []);
 
@@ -158,68 +166,73 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      {isPageLoading
+        ? <Preloader />
+        : <>
+          <Header />
 
-      <CurrentUserContext.Provider value={currentUser}>
-        <Main
-          onEditProfile={openEditProfilePopup}
-          onAddPlace={openAddPlacePopup}
-          onEditAvatar={openEditAvatarPopup}
-          onConfirmationCardDeletion={openConfirmationCardDeletionPopup}
-          onCardClick={handleCardClick}
+          <CurrentUserContext.Provider value={currentUser}>
+            <Main
+              onEditProfile={openEditProfilePopup}
+              onAddPlace={openAddPlacePopup}
+              onEditAvatar={openEditAvatarPopup}
+              onConfirmationCardDeletion={openConfirmationCardDeletionPopup}
+              onCardClick={handleCardClick}
 
-          cards={cards}
-          onCardLike={handleCardLike}
-        />
-      </CurrentUserContext.Provider>
+              cards={cards}
+              onCardLike={handleCardLike}
+            />
+          </CurrentUserContext.Provider>
 
-      <Footer />
+          <Footer />
 
-      <CurrentUserContext.Provider value={currentUser}>
-          <EditProfilePopup
-            onUpdateUser={handleUpdateUser}
-            isOpened={isEditProfilePopupOpened}
+          <CurrentUserContext.Provider value={currentUser}>
+            <EditProfilePopup
+              onUpdateUser={handleUpdateUser}
+              isOpened={isEditProfilePopupOpened}
+
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+              isProcessLoading={isProcessLoading}
+            />
+
+            <EditAvatarPopup
+              onUpdateAvatar={handleUpdateAvatar}
+              isOpened={isEditAvatarPopupOpened}
+
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+              isProcessLoading={isProcessLoading}
+            />
+
+            <AddPlacePopup
+              onAddPlace={handleAddPlaceSubmit}
+              isOpened={isAddPlacePopupOpened}
+
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+              isProcessLoading={isProcessLoading}
+            />
+
+            <ConfirmCardDeletionPopup
+              activeCardId={activeCardId}
+              onCardDelete={handleCardDelete}
+              isOpened={isConfirmationCardDeletionPopupOpened}
+
+              onClose={closeAllPopups}
+              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
+              isProcessLoading={isProcessLoading}
+            />
+          </CurrentUserContext.Provider>
+
+          <ImagePopup
+            card={selectedCard}
 
             onClose={closeAllPopups}
             closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-            isProcessLoading={isProcessLoading}
           />
-
-          <EditAvatarPopup
-            onUpdateAvatar={handleUpdateAvatar}
-            isOpened={isEditAvatarPopupOpened}
-
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-            isProcessLoading={isProcessLoading}
-          />
-
-          <AddPlacePopup
-            onAddPlace={handleAddPlaceSubmit}
-            isOpened={isAddPlacePopupOpened}
-
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-            isProcessLoading={isProcessLoading}
-          />
-
-          <ConfirmCardDeletionPopup
-            activeCardId={activeCardId}
-            onCardDelete={handleCardDelete}
-            isOpened={isConfirmationCardDeletionPopupOpened}
-
-            onClose={closeAllPopups}
-            closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-            isProcessLoading={isProcessLoading}
-          />
-      </CurrentUserContext.Provider>
-
-      <ImagePopup
-        card={selectedCard}
-
-        onClose={closeAllPopups}
-        closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      />
+        </>
+      }
     </>
   );
 };
