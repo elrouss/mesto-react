@@ -19,7 +19,7 @@ export default function PopupWithForm({ popupData, ...props }) {
         <h3 className="popup__title">{popupData.title}</h3>
         <form name={popupData.formName} className={`popup__form ${popupData.classSelectorModifierForm}`} noValidate onSubmit={props.onSubmit} >
           {props.children}
-          <button type="submit" className={`popup__submit-button ${popupData.isPopupValid === false && 'popup__submit-button_disabled'} ${popupData.classSelectorModifierSubmitBtn}`} disabled={popupData.isPopupValid === false}>
+          <button type="submit" className={`popup__submit-button ${popupData.isPopupValid === false && 'popup__submit-button_disabled'} ${popupData.classSelectorModifierSubmitBtn}`} disabled={popupData.isPopupValid === false || isProcessLoading}>
             {handleBtnText()}
           </button>
         </form>
