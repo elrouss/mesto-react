@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function EditProfilePopup(props) {
-  const { onUpdateUser, isOpened, onClose, closePopupsOnOutsideClick, isProcessLoading } = props;
+  const { onUpdateUser, isOpened, popupPackProps } = props;
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -67,9 +67,7 @@ export default function EditProfilePopup(props) {
 
       onSubmit={handleSubmit}
       isOpened={isOpened}
-      onClose={onClose}
-      closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      isProcessLoading={isProcessLoading}
+      popupPackProps={popupPackProps}
     >
       <fieldset className="popup__form-fieldset">
         <input id="input-name" name="profileName" type="text" value={name || ''} onChange={handleChangeName} placeholder="Имя" maxLength="40" required className={`popup__form-field ${!isInputValueValid(userNameLength) && 'popup__form-field_type_error'} popup__form-field_type_profile-name`} />

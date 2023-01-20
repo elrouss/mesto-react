@@ -84,6 +84,12 @@ export default function App() {
     };
   }, [closeAllPopups]);
 
+  const popupPackProps = {
+    onClose: closeAllPopups,
+    closePopupsOnOutsideClick: closePopupsOnOutsideClick,
+    isProcessLoading: isProcessLoading
+  };
+
   function handleUpdateUser(data) {
     if (data.name === currentUser.name && data.about === currentUser.about) {
       closeAllPopups();
@@ -190,38 +196,27 @@ export default function App() {
             <EditProfilePopup
               onUpdateUser={handleUpdateUser}
               isOpened={isEditProfilePopupOpened}
-
-              onClose={closeAllPopups}
-              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-              isProcessLoading={isProcessLoading}
+              popupPackProps={popupPackProps}
             />
 
             <EditAvatarPopup
               onUpdateAvatar={handleUpdateAvatar}
               isOpened={isEditAvatarPopupOpened}
-
-              onClose={closeAllPopups}
-              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-              isProcessLoading={isProcessLoading}
+              popupPackProps={popupPackProps}
             />
 
             <AddPlacePopup
               onAddPlace={handleAddPlaceSubmit}
               isOpened={isAddPlacePopupOpened}
-
-              onClose={closeAllPopups}
-              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-              isProcessLoading={isProcessLoading}
+              popupPackProps={popupPackProps}
             />
 
             <ConfirmCardDeletionPopup
               activeCardId={activeCardId}
+
               onCardDelete={handleCardDelete}
               isOpened={isConfirmationCardDeletionPopupOpened}
-
-              onClose={closeAllPopups}
-              closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-              isProcessLoading={isProcessLoading}
+              popupPackProps={popupPackProps}
             />
           </CurrentUserContext.Provider>
 

@@ -1,13 +1,13 @@
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 export default function ConfirmCardDeletionPopup(props) {
-  const { activeCardId, onCardDelete, isOpened, onClose, closePopupsOnOutsideClick, isProcessLoading } = props;
+  const { activeCardId, onCardDelete, isOpened, popupPackProps } = props;
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     onCardDelete(activeCardId);
-  }
+  };
 
   return (
     <PopupWithForm
@@ -23,9 +23,7 @@ export default function ConfirmCardDeletionPopup(props) {
 
       onSubmit={handleSubmit}
       isOpened={isOpened}
-      onClose={onClose}
-      closePopupsOnOutsideClick={closePopupsOnOutsideClick}
-      isProcessLoading={isProcessLoading}
+      popupPackProps={popupPackProps}
     />
   );
 };

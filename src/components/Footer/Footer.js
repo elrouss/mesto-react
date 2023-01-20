@@ -4,4 +4,4 @@ export default function Footer() {
       <p className="footer__copyright">&copy; {new Date().getFullYear()} Борис Зашляпин</p>
     </footer>
   );
-}
+};
