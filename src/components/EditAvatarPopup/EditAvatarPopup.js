@@ -11,9 +11,6 @@ export default function EditAvatarPopup(props) {
   const [avatar, setAvatar] = useState('');
   const avatarRef = useRef(avatar);
 
-  const [link, setLink] = useState('');
-  const [isFocusedLink, setIsFocusedLink] = useState(false);
-
   useEffect(() => {
     setAvatar(currentUser.avatar);
   }, [currentUser]);
@@ -28,24 +25,9 @@ export default function EditAvatarPopup(props) {
 
   useEffect(() => {
     if (isOpened) {
-      setLink('');
       avatarRef.current.value = '';
     };
   }, [isOpened, avatarRef]);
-
-  function handleNewAvatarLink(evt) {
-    setLink(evt.target.value);
-  };
-
-  function isNewAvatarLink(url) {
-    const urlPattern = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-/]))?/;
-
-    return !!urlPattern.test(url);
-  };
-
-  function isEditAvatarPopupValid() {
-    return isNewAvatarLink(link);
-  };
 
   return (
     <PopupWithForm
@@ -54,8 +36,7 @@ export default function EditAvatarPopup(props) {
         classSelectorModifierForm: "popup__form_type_avatar",
         formName: "profileAvatarEditor",
         title: "Обновить аватар",
-        submitBtn: "Сохранить",
-        isPopupValid: isEditAvatarPopupValid()
+        submitBtn: "Сохранить"
       }}
 
       onSubmit={handleSubmit}
@@ -64,20 +45,14 @@ export default function EditAvatarPopup(props) {
     >
       <fieldset className="popup__form-fieldset">
         <input
-          className={`popup__form-field ${((!isNewAvatarLink(link) && link !== '') || isFocusedLink) && 'popup__form-field_type_error'} popup__form-field_type_edit-avatar-link`}
+          className={`popup__form-field popup__form-field_type_edit-avatar-link`}
           name="userAvatar"
           type="url"
           placeholder="Ссылка на изображение"
           defaultValue=""
           required
           ref={avatarRef}
-          onChange={(evt) => handleNewAvatarLink(evt)}
-          onFocus={() => setIsFocusedLink(true)}
-          onBlur={() => setIsFocusedLink(false)}
         />
-        {(link !== '' || isFocusedLink) && <span className={`popup__error ${!isNewAvatarLink(link) && 'popup__error_visible'} avatar-url-error`}>
-          Введите URL.
-        </span>}
       </fieldset>
     </PopupWithForm>
   );
