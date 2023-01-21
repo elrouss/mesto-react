@@ -22,19 +22,21 @@ export default function EditProfilePopup(props) {
   }, [isOpened, currentUser]);
 
   function handleChangeName(evt) {
-    setName(evt.target.value);
+    const target = evt.target.value.replace(/^\s/, '');
+    setName(target);
   };
 
   function handleChangeDescription(evt) {
-    setDescription(evt.target.value);
+    const target = evt.target.value.replace(/^\s/, '');
+    setDescription(target);
   };
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     onUpdateUser({
-      name: name,
-      about: description,
+      name: name.trim().replace(/\s+/g, ' '),
+      about: description.trim().replace(/\s+/g, ' ')
     });
   };
 
@@ -70,11 +72,29 @@ export default function EditProfilePopup(props) {
       popupPackProps={popupPackProps}
     >
       <fieldset className="popup__form-fieldset">
-        <input id="input-name" name="profileName" type="text" value={name || ''} onChange={handleChangeName} placeholder="Имя" maxLength="40" required className={`popup__form-field ${!isInputValueValid(userNameLength) && 'popup__form-field_type_error'} popup__form-field_type_profile-name`} />
+        <input
+          className={`popup__form-field ${!isInputValueValid(userNameLength) && 'popup__form-field_type_error'} popup__form-field_type_profile-name`}
+          name="userName"
+          type="text"
+          placeholder="Имя"
+          maxLength="40"
+          required
+          value={name || ''}
+          onChange={handleChangeName}
+        />
         <span className={`popup__error ${!isInputValueValid(userNameLength) && 'popup__error_visible'} input-name-error`}>
           {showErrorMessage(userNameLength)}
         </span>
-        <input id="input-job" name="profileJob" type="text" value={description || ''} onChange={handleChangeDescription} placeholder="О себе" maxLength="200" required className={`popup__form-field ${!isInputValueValid(userDescriptionLength) && 'popup__form-field_type_error'} popup__form-field_type_profile-job`} />
+        <input
+          className={`popup__form-field ${!isInputValueValid(userDescriptionLength) && 'popup__form-field_type_error'} popup__form-field_type_profile-job`}
+          name="userAbout"
+          type="text"
+          placeholder="О себе"
+          maxLength="200"
+          required
+          value={description || ''}
+          onChange={handleChangeDescription}
+        />
         <span className={`popup__error ${!isInputValueValid(userDescriptionLength) && 'popup__error_visible'} input-job-error`}>
           {showErrorMessage(userDescriptionLength)}
         </span>

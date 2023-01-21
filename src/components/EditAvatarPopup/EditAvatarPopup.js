@@ -22,7 +22,7 @@ export default function EditAvatarPopup(props) {
     evt.preventDefault();
 
     onUpdateAvatar({
-      avatar: avatarRef.current.value
+      avatar: avatarRef.current.value.trim()
     });
   };
 
@@ -63,7 +63,18 @@ export default function EditAvatarPopup(props) {
       popupPackProps={popupPackProps}
     >
       <fieldset className="popup__form-fieldset">
-        <input id="avatar-url" name="profileAvatar" type="url" placeholder="Ссылка на изображение" defaultValue="" required className={`popup__form-field ${((!isNewAvatarLink(link) && link !== '') || isFocusedLink) && 'popup__form-field_type_error'} popup__form-field_type_edit-avatar-link`} ref={avatarRef} onChange={(evt) => handleNewAvatarLink(evt)} onFocus={() => setIsFocusedLink(true)} onBlur={() => setIsFocusedLink(false)} />
+        <input
+          className={`popup__form-field ${((!isNewAvatarLink(link) && link !== '') || isFocusedLink) && 'popup__form-field_type_error'} popup__form-field_type_edit-avatar-link`}
+          name="userAvatar"
+          type="url"
+          placeholder="Ссылка на изображение"
+          defaultValue=""
+          required
+          ref={avatarRef}
+          onChange={(evt) => handleNewAvatarLink(evt)}
+          onFocus={() => setIsFocusedLink(true)}
+          onBlur={() => setIsFocusedLink(false)}
+        />
         {(link !== '' || isFocusedLink) && <span className={`popup__error ${!isNewAvatarLink(link) && 'popup__error_visible'} avatar-url-error`}>
           Введите URL.
         </span>}

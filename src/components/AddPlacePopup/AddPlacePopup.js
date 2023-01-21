@@ -19,19 +19,21 @@ export default function AddPlacePopup(props) {
   };
 
   function handleNewCardName(evt) {
-    setName(evt.target.value);
+    const target = evt.target.value.replace(/^\s/, '');
+    setName(target);
   };
 
   function handleNewCardLink(evt) {
-    setLink(evt.target.value);
+    const target = evt.target.value.replace(/^\s/, '');
+    setLink(target);
   };
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     onAddPlace({
-      name: name,
-      link: link
+      name: name.trim().replace(/\s+/g, ' '),
+      link: link.trim()
     });
   };
 
@@ -66,11 +68,32 @@ export default function AddPlacePopup(props) {
       popupPackProps={popupPackProps}
     >
       <fieldset className="popup__form-fieldset">
-        <input id="photocard-name" name="photocardName" type="text" placeholder="Название" value={name} onChange={handleNewCardName} maxLength="30" required className={`popup__form-field ${(isFocusedName && !isInputValueValid(newCardNameLength)) && 'popup__form-field_type_error'} popup__form-field_type_add-photocard-name`} onFocus={() => setIsFocusedName(true)} onBlur={() => setIsFocusedName(false)} />
+        <input
+          className={`popup__form-field ${(isFocusedName && !isInputValueValid(newCardNameLength)) && 'popup__form-field_type_error'} popup__form-field_type_add-photocard-name`}
+          name="cardName"
+          type="text"
+          placeholder="Название"
+          maxLength="30"
+          required
+          value={name}
+          onChange={handleNewCardName}
+          onFocus={() => setIsFocusedName(true)}
+          onBlur={() => setIsFocusedName(false)}
+        />
         <span className={`popup__error ${(isFocusedName && !isInputValueValid(newCardNameLength)) && 'popup__error_visible'} photocard-name-error`}>
           Заполните это поле.
         </span>
-        <input id="photocard-url" name="photocardLink" type="url" placeholder="Ссылка на изображение" value={link} onChange={handleNewCardLink} required className={`popup__form-field ${((isFocusedLink && !isNewCardLink(link)) || (!isNewCardLink(link) && link !== '')) && 'popup__form-field_type_error'} popup__form-field_type_add-photocard-link`} onFocus={() => setIsFocusedLink(true)} onBlur={() => setIsFocusedLink(false)} />
+        <input
+          className={`popup__form-field ${((isFocusedLink && !isNewCardLink(link)) || (!isNewCardLink(link) && link !== '')) && 'popup__form-field_type_error'} popup__form-field_type_add-photocard-link`}
+          name="cardLink"
+          type="url"
+          placeholder="Ссылка на изображение"
+          required
+          value={link}
+          onChange={handleNewCardLink}
+          onFocus={() => setIsFocusedLink(true)}
+          onBlur={() => setIsFocusedLink(false)}
+        />
         <span className={`popup__error ${((isFocusedLink && !isNewCardLink(link)) || (!isNewCardLink(link) && link !== '')) && 'popup__error_visible'} photocard-url-error`}>
           Введите URL.
         </span>
