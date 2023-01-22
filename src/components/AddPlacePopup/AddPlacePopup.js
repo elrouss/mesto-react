@@ -14,8 +14,7 @@ export default function AddPlacePopup(props) {
 
   function isNewCardLink(url) {
     const urlPattern = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-/]))?/;
-
-    return !!urlPattern.test(url);
+    return urlPattern.test(url);
   };
 
   function handleNewCardName(evt) {
