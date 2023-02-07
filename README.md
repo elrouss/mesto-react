@@ -117,7 +117,7 @@ https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%
 <details>
   <summary>Обновление аватара</summary>
   <a href="https://elrouss.github.io/mesto-react/">
-    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289431-c797d287-496a-4f89-84b4-945472def51f.gif" alt="Гиф с демонстрацией обновления аватара пользователя"">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289431-c797d287-496a-4f89-84b4-945472def51f.gif" alt="Гиф с демонстрацией обновления аватара пользователя">
   </a>
 </details>
 
