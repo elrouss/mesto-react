@@ -6,11 +6,28 @@
   </a>
 </div>
 
+<details>
+  <summary>Оглавление</summary>
+  <ol>
+    <li><a href="">Описание проекта</a></li>
+    <li><a href="">Стек технологий</a></li>
+    <li><a href="">Установка и запуск приложения в локальном репозитории</a></li>
+    <li><a href="">Процесс создания</a></li>
+    <ul>
+      <li><a href="">Основные задачи, проблемы и их решение</a></li>
+    </ul>
+    <li><a href="">Функционал</a></li>
+    <li><a href="">Планы по улучшению</a></li>
+  </ol>
+</details>
+
 ## 1. Описание проекта
 Данная проектная работа выполнена в рамках образовательной программы <a href="https://practicum.yandex.ru/">Яндекс Практикума</a>. Проект представляет собой портирование на "React" адаптивного приложения с профилем пользователя и фотокарточками, <a href="https://github.com/elrouss/mesto">изначально написанного</a> на нативных технологиях: HTML5, CSS3 и JavaScript. Он похож по своему типу и функционалу на популярные соцсети: Instagram, Facebook, VKontakte, - расширенному <a href="https://github.com/elrouss/react-mesto-auth">в следующей учебной работе</a> добавлением формы регистрации и авторизации пользователей
 
 #### Ссылка на проект: https://elrouss.github.io/mesto-react/
 <i>* - проект прошел обязательное код-ревью</i>
+
+<div align="right">(<a href="">в начало</a>)</div>
 
 ## 2. Стек технологий
 <span>
@@ -51,21 +68,87 @@
 </p>
 
 ## 5. Функционал
-- Адаптивный интерфейс
-- Открытие и закрытие модальных окон (по кнопке, <b><i>оверлею</i></b> и <b><i>клавише "Escape"</i></b>)
-- Модальное окно с увеличенной фотографией карточки
-- Редактирование информации пользователя
-- Обновление аватара
-- Добавление новой карточки
-- Добавление и снятие лайка (включая счетчик лайков)
-- Удаление карточки <b><i>с модальным окном подтверждения действия</i></b>
-- <b><i>Спиннеры загрузки</i></b>
-- <b><i>Валидация форм</i></b>
-- <b><i>Окно предварительной загрузки страницы</i></b>
+<details>
+  <summary>Адаптивный интерфейс</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289303-fd836d5f-abf1-4d6a-8d7b-2b41f0c4734e.gif" alt="Гиф с демонстрацией адаптивного интерфейса">
+  </a>
+</details>
+
+<details>
+  <summary>Открытие и закрытие модальных окон (по кнопке, <b><i>оверлею</i></b> и <b><i>клавише "Escape"</i></b>)</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289368-df72dcca-e73c-4768-b33c-f66db4452bf7.gif" alt="Гиф с демонстрацией открытия и закрытия модального окна">
+  </a>
+</details>
+
+<details>
+  <summary>Модальное окно с увеличенной фотографией карточки</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289368-df72dcca-e73c-4768-b33c-f66db4452bf7.gif" alt="Гиф с демонстрацией модального окна с увеличенной фотографией карточки">
+  </a>
+</details>
+
+<details>
+  <summary>Редактирование данных пользователя</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289416-7c8d6ac5-cd93-4168-9050-8d45bf3d706c.gif" alt="Гиф с демонстрацией редактирования данных пользователя">
+  </a>
+</details>
+
+<details>
+  <summary>Обновление аватара</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289431-c797d287-496a-4f89-84b4-945472def51f.gif" alt="Гиф с демонстрацией обновления аватара пользователя"">
+  </a>
+</details>
+
+<details>
+  <summary>Добавление новой карточки</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289446-f6a99f25-4437-4c05-b79e-10da27638552.gif" alt="Гиф с демонстрацией добавления новой карточки">
+  </a>
+</details>
+
+<details>
+  <summary>Добавление и снятие лайка (включая счетчик лайков)</summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289475-13df3b35-8afb-4467-98c8-f0ee0db27206.gif" alt="Гиф с демонстрацией добавления и снятия лайка (включая счетчик лайков)">
+  </a>
+</details>
+
+<details>
+  <summary>Удаление карточки <b><i>с модальным окном подтверждения действия</i></b></summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289535-07d5ea67-1ce2-4bff-b742-8d83932d2fae.gif" alt="Гиф с демонстрацией удаления карточки">
+  </a>
+</details>
+
+<details>
+  <summary><b><i>Спиннеры загрузки</i></b></summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289431-c797d287-496a-4f89-84b4-945472def51f.gif" alt="Гиф с демонстрацией спиннера загрузки на примере модального окна с обновлением аватара">
+  </a>
+</details>
+
+<details>
+  <summary><b><i>Валидация форм</i></b></summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289431-c797d287-496a-4f89-84b4-945472def51f.gif" alt="Гиф с демонстрацией валидации формы на примере модального окна с обновлением аватара">
+  </a>
+</details>
+
+<details>
+  <summary><b><i>Окно предварительной загрузки страницы</i></b></summary>
+  <a href="https://elrouss.github.io/mesto-react/">
+    <img width="500" src="https://user-images.githubusercontent.com/108838349/217289596-e7de44b9-843b-4cda-8997-b4c103f8ea22.gif" alt="Гиф с демонстрацией окна предварительной загрузки страницы">
+  </a>
+</details>
+
 <br>
 <b><i>* - жирным курсивом выделен дополнительный функционал, не входящий в обязательный перечень требований для получения зачета по проектной работе</i></b>
 
-## 6. Планы по доработке
+## 6. Планы по улучшению
 - ~~Исправление ошибки при закрытии модального окна с фотографией карточки (реализовано <a href="https://github.com/elrouss/react-mesto-auth">в следующем проекте</a>)~~
 - ~~Оптимизирование валидации форм под кастомный хук (также реализовано <a href="https://github.com/elrouss/react-mesto-auth">в следующем проекте</a>)~~
 - Оптимизация приложения для людей с ограниченными возможностями (напр., label для инпутов форм)
