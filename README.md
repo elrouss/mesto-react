@@ -55,7 +55,7 @@ https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%
 
 <div align="right">(<a href="#summary">к оглавлению</a>)</div>
 
-<a name="establishing"><h2>Процесс создания</h2></a>
+<a name="establishing"><h2>4. Процесс создания</h2></a>
 Работа разделена на <b>2</b> этапа:
 1. Портирование  HTML-разметки, CSS-стилей, реализация открытия и закрытия 5 модальных окон (<a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditProfilePopup/EditProfilePopup.js">EditProfilePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditAvatarPopup/EditAvatarPopup.js">EditAvatarPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/AddPlacePopup/AddPlacePopup.js">AddPlacePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ConfirmCardDeletionPopup/ConfirmCardDeletionPopup.js">ConfirmCardDeletionPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ImagePopup/ImagePopup.js">ImagePopup</a>), загрузка данных с сервера
 2. Написание функционала с передачей данных на сервер (см.: <a href=#functionality>п. 5</a>)
