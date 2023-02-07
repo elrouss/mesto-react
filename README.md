@@ -9,15 +9,15 @@
 <details>
   <summary>Оглавление</summary>
   <ol>
-    <li><a href="">Описание проекта</a></li>
-    <li><a href="">Стек технологий</a></li>
-    <li><a href="">Установка и запуск приложения в локальном репозитории</a></li>
-    <li><a href="">Процесс создания</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-,1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0,-%D0%94%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0">Описание проекта</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=%D0%B2%20%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE)-,2.%20%D0%A1%D1%82%D0%B5%D0%BA%20%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9,-3.%20%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%B8">Стек технологий</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=3.%20%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%B8%20%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%20%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%B8">Установка и запуск приложения в локальном репозитории</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D0%BB%D0%BE%D1%81%D1%8C%20%D1%82%D0%B0%D0%BC%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8)-,4.%20%D0%9F%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F,-%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%BD%D0%B0">Процесс создания</a></li>
     <ul>
-      <li><a href="">Основные задачи, проблемы и их решение</a></li>
+      <li><a href="https://github.com/elrouss/mesto-react#:~:text=4.1%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%B8%2C%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D0%B8%D1%85%20%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">Основные задачи, проблемы и их решение</a></li>
     </ul>
-    <li><a href="">Функционал</a></li>
-    <li><a href="">Планы по улучшению</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%3A%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D1%83-,5.%20%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB,-%D0%90%D0%B4%D0%B0%D0%BF%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81">Функционал</a></li>
+    <li><a href="https://github.com/elrouss/mesto-react#:~:text=6.%20%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B%20%D0%BF%D0%BE%20%D1%83%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8E">Планы по улучшению</a></li>
   </ol>
 </details>
 
@@ -27,7 +27,7 @@
 #### Ссылка на проект: https://elrouss.github.io/mesto-react/
 <i>* - проект прошел обязательное код-ревью</i>
 
-<div align="right">(<a href="">в начало</a>)</div>
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
 
 ## 2. Стек технологий
 <span>
@@ -36,15 +36,21 @@
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Иконка HTML5">
 </span>
 
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
+
 ## 3. Установка и запуск приложения в локальном репозитории
 1. `git clone https://github.com/elrouss/mesto-react.git` - клонировать репозиторий (с использованием HTTPS) на свое устройство
 2. `npm i` - установить зависимости
 3. `npm run start` - запустить приложение в режиме разработчика (в браузере ввести ссылку `http://localhost:3000/`, если приложение не открылось там автоматически)
 
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
+
 ## 4. Процесс создания
 Работа разделена на <b>2</b> этапа:
 1. Портирование  HTML-разметки, CSS-стилей, реализация открытия и закрытия 5 модальных окон (<a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditProfilePopup/EditProfilePopup.js">EditProfilePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditAvatarPopup/EditAvatarPopup.js">EditAvatarPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/AddPlacePopup/AddPlacePopup.js">AddPlacePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ConfirmCardDeletionPopup/ConfirmCardDeletionPopup.js">ConfirmCardDeletionPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ImagePopup/ImagePopup.js">ImagePopup</a>), загрузка данных с сервера
 2. Написание функционала с передачей данных на сервер (см. п.5)
+
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
 
 ### 4.1 Основные задачи, проблемы и их решение
 1. <b>Удаление карточки</b> в окне подтверждения
@@ -66,6 +72,8 @@
 <p>
   <b>Решение:</b> <a href="https://github.com/elrouss/mesto-react/commit/b5de99695437d5d1727c9922fc64a007d8fd61a6">блокировать кнопку</a>
 </p>
+
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
 
 ## 5. Функционал
 <details>
@@ -148,12 +156,16 @@
 <br>
 <b><i>* - жирным курсивом выделен дополнительный функционал, не входящий в обязательный перечень требований для получения зачета по проектной работе</i></b>
 
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
+
 ## 6. Планы по улучшению
 - ~~Исправление ошибки при закрытии модального окна с фотографией карточки (реализовано <a href="https://github.com/elrouss/react-mesto-auth">в следующем проекте</a>)~~
 - ~~Оптимизирование валидации форм под кастомный хук (также реализовано <a href="https://github.com/elrouss/react-mesto-auth">в следующем проекте</a>)~~
 - Оптимизация приложения для людей с ограниченными возможностями (напр., label для инпутов форм)
 - Добавление автоматического обновления галереи карточек
 - Добавление функции сабмита форм нажатием на клавишу "Enter" (в настоящий момент работает только в случае клика пользоватем по полю формы)
+                                                             
+<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
 
 <div align="center">
   <a href="https://elrouss.github.io/mesto-react/">
