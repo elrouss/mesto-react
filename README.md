@@ -6,6 +6,7 @@
   </a>
 </div>
 
+<a name="summary">
 <details>
   <summary>Оглавление</summary>
   <ol>
@@ -20,6 +21,7 @@
     <li><a href="https://github.com/elrouss/mesto-react#:~:text=6.%20%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B%20%D0%BF%D0%BE%20%D1%83%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8E">Планы по улучшению</a></li>
   </ol>
 </details>
+</a>
 
 ## 1. Описание проекта
 Данная проектная работа выполнена в рамках образовательной программы <a href="https://practicum.yandex.ru/">Яндекс Практикума</a>. Проект представляет собой портирование на "React" адаптивного приложения с профилем пользователя и фотокарточками, <a href="https://github.com/elrouss/mesto">изначально написанного</a> на нативных технологиях: HTML5, CSS3 и JavaScript. Он похож по своему типу и функционалу на популярные соцсети: Instagram, Facebook, VKontakte, - расширенному <a href="https://github.com/elrouss/react-mesto-auth">в следующей учебной работе</a> добавлением формы регистрации и авторизации пользователей
@@ -27,7 +29,7 @@
 #### Ссылка на проект: https://elrouss.github.io/mesto-react/
 <i>* - проект прошел обязательное код-ревью</i>
 
-<div align="right">(<a href="https://github.com/elrouss/mesto-react#:~:text=%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%3A%20%22%D0%9C%D0%B5%D1%81%D1%82%D0%BE%22-,%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5,-1.%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0">в начало</a>)</div>
+([в начало](#summary))
 
 ## 2. Стек технологий
 <span>
