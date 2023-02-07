@@ -27,7 +27,7 @@
 ## 4. Процесс создания
 Работа разделена на <b>2</b> этапа:
 1. Портирование  HTML-разметки, CSS-стилей, реализация открытия и закрытия 5 модальных окон (<a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditProfilePopup/EditProfilePopup.js">EditProfilePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/EditAvatarPopup/EditAvatarPopup.js">EditAvatarPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/AddPlacePopup/AddPlacePopup.js">AddPlacePopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ConfirmCardDeletionPopup/ConfirmCardDeletionPopup.js">ConfirmCardDeletionPopup</a>, <a href="https://github.com/elrouss/mesto-react/blob/main/src/components/ImagePopup/ImagePopup.js">ImagePopup</a>), загрузка данных с сервера
-2. Написание функционала с передачей данных на сервер (см. ниже)
+2. Написание функционала с передачей данных на сервер (см. п.5)
 
 ### 4.1 Основные задачи, проблемы и их решение
 1. <b>Удаление карточки</b> в окне подтверждения
